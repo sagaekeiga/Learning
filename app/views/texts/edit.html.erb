@@ -1,0 +1,44 @@
+<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+
+<%= form_for(@text,  html: {class: 'ui form'}) do |f| %>
+  <div class="field">
+    <label>タイトル</label>
+      <%= f.text_field :title, class: '' %>
+  </div>
+  
+<div id='editor'>
+  <div class="field">
+    <label>内容</label>
+        <textarea name="text[content]" id="n" class="form-control" rows="20" v-model='input' debounce='50'></textarea>
+  </div>
+<div class="di_inline_t preview">
+<div v-html='input | marked' style: :"width: 650px;"></div>
+ </div>
+ 
+</div>
+  <div class="field">
+    <label>画像</label>
+      <%= f.text_field :image, class: '' %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "登録", class: 'ui button'%>
+  </div>
+<% end %>
+
+
+
+<script type="text/javascript">
+ window.onload = function() {
+ new Vue({
+ el: '#editor',
+ data: {
+ input: '<%== j qiita_markdown(@text.content) %>',
+ },
+ filters: {
+ marked: marked,
+ },
+ });
+ };
+</script>

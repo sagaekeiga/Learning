@@ -1,0 +1,47 @@
+<title>Ruby on Rails入門サイト</title>
+
+
+
+<div class="ui internally celled grid">
+  <div class="row">
+    <div class="three wide column">
+      <img>
+    </div>
+    <div class="ten wide column">
+        
+        <% @texts.each do |text| %>
+        <div class="d_inline">
+            <div class="ui card">
+              <div class="image">
+                <%= image_tag "#{text.image}" %>
+              </div>
+              <div class="content">
+                <a class="header"><%= link_to "#{text.title}", text %></a>
+                <div class="meta">
+                  <span class="date">Joined in 2013</span>
+                </div>
+                <div class="description">
+                  <%= text.content.truncate(54) %>
+                </div>
+              </div>
+            </div>
+        </div>
+        <% end %>
+        
+    </div>
+    <div class="three wide column">
+      <img>
+    </div>
+  </div>
+  <div class="row">
+    <div class="three wide column">
+      <img>
+    </div>
+    <div class="ten wide column">
+      <p></p>
+    </div>
+    <div class="three wide column">
+      <img>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+
+<table class="ui celled table">
+  <thead>
+    <tr><th>ID</th>
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>画像</th>
+    <th>管理</th>
+  </tr></thead>
+  <tbody>
+    <% @texts.each do |text| %>
+    <tr>
+     <td><%= text.id %></td>
+     <td><%= link_to "#{text.title}", text %></td>
+     <td><%= text.content.truncate(10) %></td>
+     <td><%= image_tag(text.image, :size => '50x50') %></td>
+     <td>
+      <%= link_to "編集", edit_text_path(text.id) %>
+      <%= link_to "削除", text, method: :delete, data: { confirm: "本当に削除してもいいですか？" } %>
+     </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
